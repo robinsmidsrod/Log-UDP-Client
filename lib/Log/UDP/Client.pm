@@ -1,4 +1,7 @@
 package Log::UDP::Client;
+
+use 5.006; # Found with Perl::MinimumVersion
+
 use Moose;
 
 with 'Data::Serializable';
