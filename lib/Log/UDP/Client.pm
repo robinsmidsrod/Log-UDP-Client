@@ -9,6 +9,8 @@ with 'Data::Serializable';
 use IO::Socket::INET ();
 use Carp qw(croak confess);
 
+=encoding utf8
+
 =head1 NAME
 
 Log::UDP::Client - a simple way to send structured log messages via UDP
