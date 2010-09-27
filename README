@@ -1,50 +1,157 @@
-Log-UDP-Client 0.01
+NAME
+    Log::UDP::Client - A simple way to send structured log messages via UDP
 
-This module enables you to send a message (simple string or complicated
-object) over a UDP socket to a listening server. The message will be
-encoded with a serializer module (default is Storable). If you also use
-Log::UDP::Server you can receive that packet, decode it and do whatever you
-want with it.
+VERSION
+    version 0.20.0
 
-The nice thing about UDP is that it is non-blocking in nature, so if your
-listening server is down or unavailable, the messages will just be sent into
-the void. Your application won't notice the difference.
+SYNOPSIS
+        use Log::UDP::Client;
 
-INSTALLATION
+        # Send the simple scalar to the server
+        Log::UDP::Client->new->send("Hi");
 
-To install this module, run the following commands:
+        # Log lots of messages
+        my $logger = Log::UDP::Client->new(server_port => 15000);
+        my $counter=0;
+        while(++$counter) {
+            $logger->send($counter);
+            last if $counter >= 1000;
+        }
 
-	perl Makefile.PL
-	make
-	make test
-	make install
+        # Send some debugging info
+        $logger->send({
+            pid     => $$,
+            program => $0,
+            args    => \@ARGV,
+        });
 
-SUPPORT AND DOCUMENTATION
+        # Use of JSON serializer
+        my $logger = Log::UDP::Client->new( serializer_module => 'JSON' );
 
-After installing, you can find documentation for this module with the
-perldoc command.
+        # Will emit { "message" => "Hi" } because JSON want to wrap stuff into a hashref
+        $logger->send("Hi");
 
-    perldoc Log::UDP::Client
+        # Use of custom serializer
+        use Storable qw(freeze);
+        my $logger = Log::UDP::Client->new (
+            serializer => sub {
+                return nfreeze( \( $_[0] ) );
+            },
+        );
 
-You can also look for information at:
+DESCRIPTION
+    This module enables you to send a message (simple string or complicated
+    object) over an UDP socket to a listening server. The message will be
+    encoded with a serializer module (default is Storable).
 
-    RT, CPAN's request tracker
-        http://rt.cpan.org/NoAuth/Bugs.html?Dist=Log-UDP-Client
+ATTRIBUTES
+  server_address : Str
+    IP address or hostname for the server you want to send the messages to.
+    This field can be changed after instantiation. Default is 127.0.0.1.
 
-    AnnoCPAN, Annotated CPAN documentation
-        http://annocpan.org/dist/Log-UDP-Client
+  server_port : Int
+    Port for the server you plan to send the messages to. This field can be
+    changed after instantiation. Default is port 9999.
 
-    CPAN Ratings
-        http://cpanratings.perl.org/d/Log-UDP-Client
+  throws_exception : Bool
+    If errors are encountered, should we throw exception or just return?
+    Default is return. Set to true for exceptions. You can change this flag
+    after instantiation.
 
-    Search CPAN
-        http://search.cpan.org/dist/Log-UDP-Client/
+  socket : IO::Socket::INET
+    Read-only field that contains the socket used to send the messages.
 
+METHODS
+  send($message)
+    Instance method that actually encodes and transmits the specified
+    message over UDP to the listening server. Will die if throw_exception is
+    set to true and some kind of transmission error occurs. The message will
+    be serialized by the instance-defined serializer. Returns true on
+    success.
 
-COPYRIGHT AND LICENCE
+INHERITED METHODS
+    *   deserialize
 
-Copyright (C) 2009 Robin Smidsrød
+    *   deserializer
 
-This program is free software; you can redistribute it and/or modify it
-under the same terms as Perl itself.
+    *   serialize
+
+    *   serializer
+
+    *   serializer_module
+
+    All of these methods are inherited from Data::Serializable. Read more
+    about them there.
+
+SEE ALSO
+    *   Moose
+
+    *   Storable
+
+    *   JSON::XS
+
+    *   IO::Socket::INET
+
+SUPPORT
+    You can find documentation for this module with the perldoc command.
+
+      perldoc Log::UDP::Client
+
+  Websites
+    *   Search CPAN
+
+        <http://search.cpan.org/dist/Log-UDP-Client>
+
+    *   AnnoCPAN: Annotated CPAN documentation
+
+        <http://annocpan.org/dist/Log-UDP-Client>
+
+    *   CPAN Ratings
+
+        <http://cpanratings.perl.org/d/Log-UDP-Client>
+
+    *   CPAN Forum
+
+        <http://cpanforum.com/dist/Log-UDP-Client>
+
+    *   RT: CPAN's Bug Tracker
+
+        <http://rt.cpan.org/NoAuth/Bugs.html?Dist=Log-UDP-Client>
+
+    *   CPANTS Kwalitee
+
+        <http://cpants.perl.org/dist/overview/Log-UDP-Client>
+
+    *   CPAN Testers Results
+
+        <http://cpantesters.org/distro/L/Log-UDP-Client.html>
+
+    *   CPAN Testers Matrix
+
+        <http://matrix.cpantesters.org/?dist=Log-UDP-Client>
+
+    *   Source Code Repository
+
+        The code is open to the world, and available for you to hack on.
+        Please feel free to browse it and play with it, or whatever. If you
+        want to contribute patches, please send me a diff or prod me to pull
+        from your repository :)
+
+        <git://github.com/robinsmidsrod/Log-UDP-Client.git>
+
+  Bugs
+    Please report any bugs or feature requests to "bug-log-udp-client at
+    rt.cpan.org", or through the web interface at
+    <http://rt.cpan.org/NoAuth/ReportBug.html?Queue=Log-UDP-Client>. I will
+    be notified, and then you'll automatically be notified of progress on
+    your bug as I make changes.
+
+AUTHOR
+    Robin Smidsrød <robin@smidsrod.no>
+
+COPYRIGHT AND LICENSE
+    This software is copyright (c) 2010 by Robin Smidsrød.
+
+    This is free software; you can redistribute it and/or modify it under
+    the same terms as the Perl 5 programming language system itself.
 
