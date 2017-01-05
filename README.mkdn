@@ -4,7 +4,7 @@ Log::UDP::Client - A simple way to send structured log messages via UDP
 
 # VERSION
 
-version 0.20.1
+version 0.20.2
 
 # SYNOPSIS
 

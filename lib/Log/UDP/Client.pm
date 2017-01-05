@@ -3,6 +3,7 @@ use warnings;
 use 5.006; # Found with Perl::MinimumVersion
 
 package Log::UDP::Client;
+
 use Moose;
 with 'Data::Serializable' => { -version => '0.40.0' };
 
