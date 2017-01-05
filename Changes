@@ -2,6 +2,8 @@ Revision history for Log-UDP-Client
 
 {{$NEXT}}
 
+0.20.2    2017-01-05 17:19:36+01:00 Europe/Oslo
+
     - Fixed version number in main module file.
 
 0.20.1    2017-01-05 17:06:42+01:00 Europe/Oslo
