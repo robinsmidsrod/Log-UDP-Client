@@ -50,17 +50,17 @@ serializer module (default is [Storable](http://search.cpan.org/perldoc?Storable
 
 # ATTRIBUTES
 
-## server_address : Str
+## server\_address : Str
 
 IP address or hostname for the server you want to send the messages to.
 This field can be changed after instantiation. Default is 127.0.0.1.
 
-## server_port : Int
+## server\_port : Int
 
 Port for the server you plan to send the messages to.
 This field can be changed after instantiation. Default is port 9999.
 
-## throws_exception : Bool
+## throws\_exception : Bool
 
 If errors are encountered, should we throw exception or just return?
 Default is return. Set to true for exceptions. You can change this flag
@@ -75,7 +75,7 @@ Read-only field that contains the socket used to send the messages.
 ## send($message)
 
 Instance method that actually encodes and transmits the specified message
-over UDP to the listening server. Will die if throw_exception is set to true
+over UDP to the listening server. Will die if throw\_exception is set to true
 and some kind of transmission error occurs. The message will be serialized by
 the instance-defined serializer. Returns true on success.
 
@@ -85,7 +85,7 @@ the instance-defined serializer. Returns true on success.
 - deserializer
 - serialize
 - serializer
-- serializer_module
+- serializer\_module
 
 All of these methods are inherited from [Data::Serializable](http://search.cpan.org/perldoc?Data::Serializable). Read more about them there.
 
@@ -102,66 +102,72 @@ All of these methods are inherited from [Data::Serializable](http://search.cpan.
 
 You can find documentation for this module with the perldoc command.
 
-  perldoc Log::UDP::Client
+    perldoc Log::UDP::Client
 
 ## Websites
 
 The following websites have more information about this module, and may be of help to you. As always,
 in addition to those websites please use your favorite search engine to discover more resources.
 
+- MetaCPAN
+
+    A modern, open-source CPAN search engine, useful to view POD in HTML format.
+
+    [http://metacpan.org/release/Log-UDP-Client](http://metacpan.org/release/Log-UDP-Client)
+
 - Search CPAN
 
-The default CPAN search engine, useful to view POD in HTML format.
+    The default CPAN search engine, useful to view POD in HTML format.
 
-[http://search.cpan.org/dist/Log-UDP-Client](http://search.cpan.org/dist/Log-UDP-Client)
+    [http://search.cpan.org/dist/Log-UDP-Client](http://search.cpan.org/dist/Log-UDP-Client)
 
 - RT: CPAN's Bug Tracker
 
-The RT ( Request Tracker ) website is the default bug/issue tracking system for CPAN.
+    The RT ( Request Tracker ) website is the default bug/issue tracking system for CPAN.
 
-[http://rt.cpan.org/NoAuth/Bugs.html?Dist=Log-UDP-Client](http://rt.cpan.org/NoAuth/Bugs.html?Dist=Log-UDP-Client)
+    [http://rt.cpan.org/NoAuth/Bugs.html?Dist=Log-UDP-Client](http://rt.cpan.org/NoAuth/Bugs.html?Dist=Log-UDP-Client)
 
 - AnnoCPAN
 
-The AnnoCPAN is a website that allows community annonations of Perl module documentation.
+    The AnnoCPAN is a website that allows community annotations of Perl module documentation.
 
-[http://annocpan.org/dist/Log-UDP-Client](http://annocpan.org/dist/Log-UDP-Client)
+    [http://annocpan.org/dist/Log-UDP-Client](http://annocpan.org/dist/Log-UDP-Client)
 
 - CPAN Ratings
 
-The CPAN Ratings is a website that allows community ratings and reviews of Perl modules.
+    The CPAN Ratings is a website that allows community ratings and reviews of Perl modules.
 
-[http://cpanratings.perl.org/d/Log-UDP-Client](http://cpanratings.perl.org/d/Log-UDP-Client)
+    [http://cpanratings.perl.org/d/Log-UDP-Client](http://cpanratings.perl.org/d/Log-UDP-Client)
 
 - CPAN Forum
 
-The CPAN Forum is a web forum for discussing Perl modules.
+    The CPAN Forum is a web forum for discussing Perl modules.
 
-[http://cpanforum.com/dist/Log-UDP-Client](http://cpanforum.com/dist/Log-UDP-Client)
+    [http://cpanforum.com/dist/Log-UDP-Client](http://cpanforum.com/dist/Log-UDP-Client)
 
 - CPANTS
 
-The CPANTS is a website that analyzes the Kwalitee ( code metrics ) of a distribution.
+    The CPANTS is a website that analyzes the Kwalitee ( code metrics ) of a distribution.
 
-[http://cpants.perl.org/dist/overview/Log-UDP-Client](http://cpants.perl.org/dist/overview/Log-UDP-Client)
+    [http://cpants.perl.org/dist/overview/Log-UDP-Client](http://cpants.perl.org/dist/overview/Log-UDP-Client)
 
 - CPAN Testers
 
-The CPAN Testers is a network of smokers who run automated tests on uploaded CPAN distributions.
+    The CPAN Testers is a network of smokers who run automated tests on uploaded CPAN distributions.
 
-[http://www.cpantesters.org/distro/L/Log-UDP-Client](http://www.cpantesters.org/distro/L/Log-UDP-Client)
+    [http://www.cpantesters.org/distro/L/Log-UDP-Client](http://www.cpantesters.org/distro/L/Log-UDP-Client)
 
 - CPAN Testers Matrix
 
-The CPAN Testers Matrix is a website that provides a visual way to determine what Perls/platforms PASSed for a distribution.
+    The CPAN Testers Matrix is a website that provides a visual overview of the test results for a distribution on various Perls/platforms.
 
-[http://matrix.cpantesters.org/?dist=Log-UDP-Client](http://matrix.cpantesters.org/?dist=Log-UDP-Client)
+    [http://matrix.cpantesters.org/?dist=Log-UDP-Client](http://matrix.cpantesters.org/?dist=Log-UDP-Client)
 
 - CPAN Testers Dependencies
 
-The CPAN Testers Dependencies is a website that shows a chart of the test results of all dependencies for a distribution.
+    The CPAN Testers Dependencies is a website that shows a chart of the test results of all dependencies for a distribution.
 
-[http://deps.cpantesters.org/?module=Log::UDP::Client](http://deps.cpantesters.org/?module=Log::UDP::Client)
+    [http://deps.cpantesters.org/?module=Log::UDP::Client](http://deps.cpantesters.org/?module=Log::UDP::Client)
 
 ## Bugs / Feature Requests
 
@@ -177,7 +183,7 @@ from your repository :)
 
 [http://github.com/robinsmidsrod/Log-UDP-Client](http://github.com/robinsmidsrod/Log-UDP-Client)
 
-  git clone git://github.com/robinsmidsrod/Log-UDP-Client.git
+    git clone git://github.com/robinsmidsrod/Log-UDP-Client.git
 
 # AUTHOR
 
@@ -185,7 +191,7 @@ Robin Smidsrød <robin@smidsrod.no>
 
 # COPYRIGHT AND LICENSE
 
-This software is copyright (c) 2011 by Robin Smidsrød.
+This software is copyright (c) 2017 by Robin Smidsrød.
 
 This is free software; you can redistribute it and/or modify it under
 the same terms as the Perl 5 programming language system itself.
